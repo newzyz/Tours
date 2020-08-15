@@ -1,0 +1,6 @@
+module Pods_SkinGuide {
+  umbrella header "Pods-SkinGuide-umbrella.h"
+
+  export *
+  module * { export * }
+}
