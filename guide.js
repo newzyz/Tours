@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     marginTop: -420,
     marginLeft: 60,
-    marginRight: 50,
+    marginRight: 70,
   },
   text1: {
     color: 'black',
