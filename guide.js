@@ -14,12 +14,12 @@ export default class App extends Component {
           source={require('./images/guide.jpg')}
           style={styles.image}>
           <Text style={styles.text}>
-            คุณต้องการปรึกษาปัญหาเรื่องผิวพรรณเรื่องไหน หรือ
+            คุณต้องการปรึกษาปัญหาเรื่องผิวพรรณด้านไหน หรือ
             ต้องการผลิตภัณฑ์ดูแลผิวแบบไหน ?
           </Text>
           <TextInput
-            style={{height: 40}}
-            placeholder="Type here to translate!"
+            style={styles.text1}
+            placeholder="เช่น สิวเสี้ยน สิวอักเสบ ผด ..."
             onChangeText={(text) => this.setState({text})}
           />
         </ImageBackground>
@@ -41,10 +41,20 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'black',
-    fontSize: 20,
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'left',
+    marginTop: -420,
+    marginLeft: 60,
+    marginRight: 50,
+  },
+  text1: {
+    color: 'black',
+    fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginTop: -550,
-    marginLeft: 20,
+    marginTop: 150,
+    marginLeft: 100,
+    marginRight: 50,
   },
 });
