@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  StyleSheet
 } from 'react-native';
 import {CustomHeader} from '../index';
 
