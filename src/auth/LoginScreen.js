@@ -39,11 +39,22 @@ export class LoginScreen extends Component {
   componentDidMount() {
     // do stuff while splash screen is shown
     // After having done stuff (such as async tasks) hide the splash screen
+    const {navigation} = this.props;
+    //Adding an event listner om focus
+    //So whenever the screen will have focus it will set the state to zero
+    this.focusListener = navigation.addListener('didFocus', () => {
+      this.setState({count: 0});
+    });
     SplashScreen.hide();
   }
+  componentWillUnmount() {
+    // Remove the event listener before removing the screen from the stack
+    this.focusListener.remove();
+  }
+
   state = {
-     email: '',
-     password: '',
+    email: '',
+    password: '',
   };
   _onPressButton(email, pass) {
     if (email == 'Admin' && pass == '1234') {
@@ -58,7 +69,6 @@ export class LoginScreen extends Component {
   }
 
   render() {
-    const { password } = this.state;
     return (
       <ImageBackground source={IMAGE.IMAGE_BACK} style={styles.image}>
         <Image style={styles.container1} source={IMAGE.IMAGE_LOGIN}></Image>
@@ -71,6 +81,9 @@ export class LoginScreen extends Component {
             placeholderTextColor="gray"
             autoCapitalize="none"
             onChangeText={(text) => this.setState({email: text})}
+            ref={(text) => {
+              this.textInput = text;
+            }}
           />
           <TextInput
             style={styles.input}
@@ -78,7 +91,11 @@ export class LoginScreen extends Component {
             placeholder="  Password"
             placeholderTextColor="gray"
             autoCapitalize="none"
+            secureTextEntry={true}
             onChangeText={(text) => this.setState({password: text})}
+            ref={(text) => {
+              this.textInput = text;
+            }}
           />
           <TouchableHighlight
             onPress={() =>
@@ -139,6 +156,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   text: {
+    marginLeft: 10,
     margin: 15,
     color: 'black',
     fontSize: 14,

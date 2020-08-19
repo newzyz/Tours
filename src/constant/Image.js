@@ -11,5 +11,8 @@ const IMAGE = {
   IMAGE_BACK: require('../images/image/back.jpg'),
   IMAGE_LOGIN: require('../images/image/login2.jpg'),
   IMAGE_GUIDE: require('../images/image/guide.jpg'),
+  IMAGE_USER: require('../images/image/user.png'),
+  ICON_QUESTION: require('../images/icons/question.png'),
+  ICON_MONEY: require('../images/icons/money.png'),
 };
 export {IMAGE};
