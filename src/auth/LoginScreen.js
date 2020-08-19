@@ -42,8 +42,8 @@ export class LoginScreen extends Component {
     SplashScreen.hide();
   }
   state = {
-    email: '',
-    password: '',
+     email: '',
+     password: '',
   };
   _onPressButton(email, pass) {
     if (email == 'Admin' && pass == '1234') {
@@ -58,6 +58,7 @@ export class LoginScreen extends Component {
   }
 
   render() {
+    const { password } = this.state;
     return (
       <ImageBackground source={IMAGE.IMAGE_BACK} style={styles.image}>
         <Image style={styles.container1} source={IMAGE.IMAGE_LOGIN}></Image>
