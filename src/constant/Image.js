@@ -24,5 +24,7 @@ const IMAGE = {
   IMAGE_SLIDE_2: require('../images/image/IMG_2082.jpg'),
   IMAGE_SLIDE_3: require('../images/image/IMG_2083.jpg'),
   IMAGE_SLIDE_4: require('../images/image/IMG_2084.jpg'),
+
+  IMAGE_DETAIL: require('../images/image/12.jpg'),
 };
 export {IMAGE};

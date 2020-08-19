@@ -26,12 +26,12 @@ class Blink extends Component {
 }
 const styles = StyleSheet.create({
   text: {
-    color: 'gray',
-    backgroundColor: 'white',
-    fontSize: 30,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginTop: 700,
+    width: 100,
+    height: 25,
+    marginTop: 0,
+    alignItems: 'center',
+    backgroundColor: 'red',
+    color: 'white',
   },
 });
 
