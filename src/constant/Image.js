@@ -18,6 +18,7 @@ const IMAGE = {
   ICON_INFO: require('../images/icons/info.png'),
   ICON_COIN: require('../images/icons/coin.png'),
   ICON_BANK: require('../images/icons/bank.png'),
+  ICON_LOGOUT: require('../images/icons/logout.png'),
 
   IMAGE_SLIDE_1: require('../images/image/IMG_2078.jpg'),
   IMAGE_SLIDE_2: require('../images/image/IMG_2082.jpg'),

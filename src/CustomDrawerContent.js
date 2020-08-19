@@ -182,12 +182,36 @@ export class CustomDrawerContent extends Component {
               {'  '}ช่วยเหลือ
             </Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              marginLeft: 0,
+              marginTop: 35,
+              backgroundColor: 'white',
+              width: 280,
+              height: 40,
+              backgroundColor: '#CD5C5C',
+            }}
+            onPress={() => this.props.navigation.navigate('Login')}>
+            <Text
+              style={{
+                marginTop: 7,
+                marginLeft: 90,
+                fontSize: 18,
+                color: 'white',
+                textAlign: 'center',
+              }}>
+              <Image
+                style={{
+                  width: 22,
+                  height: 22,
+                }}
+                source={IMAGE.ICON_LOGOUT}
+              />
+              {'  '}
+              Logout
+            </Text>
+          </TouchableOpacity>
         </ScrollView>
-        <TouchableOpacity
-          style={{marginTop: 20, marginLeft: 10}}
-          onPress={() => this.props.navigation.navigate('Login')}>
-          <Text style={{fontSize: 15, color: 'red'}}>Logout</Text>
-        </TouchableOpacity>
       </SafeAreaView>
     );
   }
