@@ -12,7 +12,7 @@ import {IMAGE} from './constant/Image';
 export class CustomDrawerContent extends Component {
   render() {
     return (
-      <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+      <SafeAreaView style={{flex: 1, backgroundColor: '#b2c4c8'}}>
         <View
           style={{height: 150, alignItems: 'center', justifyContent: 'center'}}>
           <Image source={IMAGE.ICON_PROFILE} />
@@ -21,12 +21,12 @@ export class CustomDrawerContent extends Component {
           <TouchableOpacity
             style={{marginTop: 20}}
             onPress={() => this.props.navigation.navigate('MenuTab')}>
-            <Text>Menu Tab</Text>
+            <Text>SKINGUIDE</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{marginTop: 20}}
             onPress={() => this.props.navigation.navigate('Notifications')}>
-            <Text>Notifications</Text>
+            <Text>ถามGuide</Text>
           </TouchableOpacity>
         </ScrollView>
         <TouchableOpacity

@@ -91,7 +91,8 @@ function TabNavigator() {
         },
       })}
       tabBarOptions={{
-        activeTintColor: 'tomato',
+        activeBackgroundColor: '#b2c4c8',
+        activeTintColor: 'black',
         inactiveTintColor: 'black',
       }}>
       <Tab.Screen name="Home" component={HomeStack} />

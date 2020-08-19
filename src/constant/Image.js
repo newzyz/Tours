@@ -8,5 +8,8 @@ const IMAGE = {
   ICON_SETTING_B: require('../images/icons/setting_b.png'),
   ICON_SETTING_W: require('../images/icons/setting_w.png'),
   ICON_LEFT_ARROW: require('../images/icons/left-arrow.png'),
+  IMAGE_BACK: require('../images/image/back.jpg'),
+  IMAGE_LOGIN: require('../images/image/login2.jpg'),
+  IMAGE_GUIDE: require('../images/image/guide.jpg'),
 };
 export {IMAGE};

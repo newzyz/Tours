@@ -6,21 +6,63 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  ImageBackground,
+  StyleSheet,
+  TextInput,
 } from 'react-native';
 import {CustomHeader} from '../index';
+import {IMAGE} from '../constant/Image';
 
 export class NotificationsScreen extends Component {
   render() {
     return (
       <SafeAreaView style={{flex: 1}}>
-        <CustomHeader
-          title="Notifications"
-          navigation={this.props.navigation}
-        />
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          <Text>Notification Screen!</Text>
+        <CustomHeader title="ถามไกด์" navigation={this.props.navigation} />
+        <View style={styles.container}>
+          <ImageBackground source={IMAGE.IMAGE_GUIDE} style={styles.image}>
+            <Text style={styles.text}>
+              คุณต้องการปรึกษาปัญหาเรื่องผิวพรรณด้านไหน หรือ
+              ต้องการผลิตภัณฑ์ดูแลผิวแบบไหน ?
+            </Text>
+            <TextInput
+              style={styles.text1}
+              placeholder="เช่น สิวเสี้ยน สิวอักเสบ ผด ..."
+              onChangeText={(text) => this.setState({text})}
+            />
+          </ImageBackground>
         </View>
       </SafeAreaView>
     );
   }
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'stretch',
+  },
+  image: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+  },
+  text: {
+    color: 'black',
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'left',
+    marginTop: -420,
+    marginLeft: 60,
+    marginRight: 70,
+  },
+  text1: {
+    color: 'black',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginTop: 150,
+    marginLeft: 100,
+    marginRight: 50,
+  },
+});
