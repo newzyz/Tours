@@ -47,10 +47,7 @@ export class LoginScreen extends Component {
     });
     SplashScreen.hide();
   }
-  componentWillUnmount() {
-    // Remove the event listener before removing the screen from the stack
-    this.focusListener.remove();
-  }
+  
 
   state = {
     email: '',
@@ -108,7 +105,7 @@ export class LoginScreen extends Component {
             </View>
           </TouchableHighlight>
           <TouchableOpacity
-            style={{marginTop: 300}}
+            style={{marginTop: 0}}
             onPress={() => this.props.navigation.navigate('Register')}>
             <Text style={styles.text}>สมัครสมาชิก</Text>
           </TouchableOpacity>

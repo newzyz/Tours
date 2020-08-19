@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {
+  Platform,
   Text,
   View,
   SafeAreaView,
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'left',
-    marginTop: -420,
+    marginTop: Platform.OS === "ios"?-420:-300,
     marginLeft: 60,
     marginRight: 70,
   },

@@ -48,9 +48,15 @@ export class HomeScreen extends React.Component {
   renderRow = ({item}) =>{
     return (
     <View style={styles.product_card}>
-      <Image source={{uri:item.url}} style={styles.itemImage}/>
-      <Text style={styles.itemText}>{item.title}</Text>
-      <Text style={styles.itemText}>{item.id}</Text>
+      <TouchableOpacity onPress={() => this.props.navigation.navigate('HomeDetail')} >
+        <Image source={{uri:item.url}} style={styles.itemImage}/>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => this.props.navigation.navigate('HomeDetail')} >
+          <Text style={styles.itemText}>{item.title}</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => this.props.navigation.navigate('HomeDetail')} >
+        <Text style={styles.itemText}>{item.id}</Text>
+      </TouchableOpacity>
     </View>
     )
   }
@@ -67,7 +73,6 @@ export class HomeScreen extends React.Component {
   handleLoadMore = ()=>{
     this.setState({page:this.state.page+1},this.getData)
   }
-
   render() {
       return (
         <SafeAreaView style={{flex: 1}}>
@@ -78,7 +83,7 @@ export class HomeScreen extends React.Component {
           />
           <SliderBox
             images={this.state.images}
-            // onCurrentImagePressed={index => console.warn(`image ${index} pressed`)}
+            onCurrentImagePressed={index => this.props.navigation.navigate('HomeDetail')}
             // currentImageEmitter={index => console.warn(`current pos is: ${index}`)}
             autoplay={true}
             circleLoop={true}
@@ -114,8 +119,8 @@ const styles = StyleSheet.create({
   },
   product_card: {
     flex: 1,
-    marginRight:20,
-    marginLeft:20,
+    marginRight:10,
+    marginLeft:10,
     marginVertical:0,
     backgroundColor:'#FFF'
   },
