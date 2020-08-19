@@ -17,6 +17,7 @@ export class CustomDrawerContent extends Component {
         <View
           style={{height: 150, alignItems: 'center', justifyContent: 'center'}}>
           <Image style={{width: 120, height: 120}} source={IMAGE.IMAGE_USER} />
+          <Text style={styles.text1}>Admin</Text>
         </View>
         <ScrollView style={{marginLeft: 0}}>
           <TouchableOpacity
@@ -27,23 +28,43 @@ export class CustomDrawerContent extends Component {
               alignItems: 'center',
               backgroundColor: '#607B8B',
             }}
-            onPress={() => this.props.navigation.navigate('MenuTab')}>
-            <Text style={styles.text}>Admin</Text>
-          </TouchableOpacity>
+            onPress={() =>
+              this.props.navigation.navigate('MenuTab')
+            }></TouchableOpacity>
           <TouchableOpacity
             style={{
-              marginTop: 0,
-              height: 50,
+              marginTop: -20,
+              height: 60,
               width: 280,
               alignItems: 'flex-start',
               backgroundColor: '#607B8B',
             }}
             onPress={() => this.props.navigation.navigate('MenuTab')}>
             <Text style={{fontSize: 15, color: 'white', marginLeft: 25}}>
-              เงินคงเหลือ : 400.00 บาท
+              <Image
+                style={{
+                  width: 22,
+                  height: 22,
+                  alignItems: 'stretch',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                }}
+                source={IMAGE.ICON_BANK}
+              />
+              {'  '} : 400.00 ฿
             </Text>
             <Text style={{fontSize: 15, color: 'white', marginLeft: 25}}>
-              คะแนน : 277
+              <Image
+                style={{
+                  width: 22,
+                  height: 22,
+                  alignItems: 'stretch',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                }}
+                source={IMAGE.ICON_COIN}
+              />
+              {'  '}: 277 coins
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -101,7 +122,19 @@ export class CustomDrawerContent extends Component {
               borderBottomColor: '#8B795E',
             }}
             onPress={() => this.props.navigation.navigate('MenuTab')}>
-            <Text style={styles.text1}>เติมเงิน</Text>
+            <Text style={styles.text1}>
+              <Image
+                style={{
+                  width: 22,
+                  height: 22,
+                  alignItems: 'stretch',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                }}
+                source={IMAGE.ICON_MONEY}
+              />
+              {'  '}เติมเงิน
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -112,7 +145,19 @@ export class CustomDrawerContent extends Component {
               borderBottomColor: '#8B795E',
             }}
             onPress={() => this.props.navigation.navigate('MenuTab')}>
-            <Text style={styles.text1}>ตั้งค่า</Text>
+            <Text style={styles.text1}>
+              <Image
+                style={{
+                  width: 22,
+                  height: 22,
+                  alignItems: 'stretch',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                }}
+                source={IMAGE.ICON_GEAR}
+              />
+              {'  '}ตั้งค่า
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -123,7 +168,19 @@ export class CustomDrawerContent extends Component {
               borderBottomColor: '#8B795E',
             }}
             onPress={() => this.props.navigation.navigate('MenuTab')}>
-            <Text style={styles.text1}>ช่วยเหลือ</Text>
+            <Text style={styles.text1}>
+              <Image
+                style={{
+                  width: 22,
+                  height: 22,
+                  alignItems: 'stretch',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                }}
+                source={IMAGE.ICON_INFO}
+              />
+              {'  '}ช่วยเหลือ
+            </Text>
           </TouchableOpacity>
         </ScrollView>
         <TouchableOpacity
@@ -144,7 +201,7 @@ const styles = StyleSheet.create({
   },
   text1: {
     marginLeft: 10,
-    marginTop: 5,
+    marginTop: 0,
     color: 'black',
     fontSize: 16,
     fontWeight: 'bold',

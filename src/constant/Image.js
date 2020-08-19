@@ -14,6 +14,10 @@ const IMAGE = {
   IMAGE_USER: require('../images/image/user.png'),
   ICON_QUESTION: require('../images/icons/question.png'),
   ICON_MONEY: require('../images/icons/money.png'),
+  ICON_GEAR: require('../images/icons/gear.png'),
+  ICON_INFO: require('../images/icons/info.png'),
+  ICON_COIN: require('../images/icons/coin.png'),
+  ICON_BANK: require('../images/icons/bank.png'),
 
   IMAGE_SLIDE_1: require('../images/image/IMG_2078.jpg'),
   IMAGE_SLIDE_2: require('../images/image/IMG_2082.jpg'),
