@@ -14,5 +14,10 @@ const IMAGE = {
   IMAGE_USER: require('../images/image/user.png'),
   ICON_QUESTION: require('../images/icons/question.png'),
   ICON_MONEY: require('../images/icons/money.png'),
+
+  IMAGE_SLIDE_1: require('../images/image/IMG_2078.jpg'),
+  IMAGE_SLIDE_2: require('../images/image/IMG_2082.jpg'),
+  IMAGE_SLIDE_3: require('../images/image/IMG_2083.jpg'),
+  IMAGE_SLIDE_4: require('../images/image/IMG_2084.jpg'),
 };
 export {IMAGE};

@@ -21,10 +21,10 @@ export class HomeScreen extends React.Component {
     this.state = {
       isLoading:false,
       images: [
-        IMAGE.IMAGE_LOGIN,
-        IMAGE.IMAGE_LOGIN,
-        IMAGE.IMAGE_LOGIN,
-        IMAGE.IMAGE_LOGIN,
+        IMAGE.IMAGE_SLIDE_1,
+        IMAGE.IMAGE_SLIDE_2,
+        IMAGE.IMAGE_SLIDE_3,
+        IMAGE.IMAGE_SLIDE_4,
       ],
       data :[],
       page:1
