@@ -18,7 +18,7 @@ export class HomeScreenDetail extends Component {
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
         <CustomHeader
-          title="Setting Detail"
+          title="Product detail"
           navigation={this.props.navigation}
         />
         <View style={{width: 520, height: 50}}>
@@ -87,7 +87,7 @@ export class HomeScreenDetail extends Component {
                 onLongPress={this._onLongPressButton}
                 underlayColor="white">
                 <View style={styles.button2}>
-                  <Text style={styles.buttonText}>เข้าสู่ระบบ</Text>
+                  <Text style={styles.buttonText}>เพิ่มใส่ตะกล้า</Text>
                 </View>
               </TouchableHighlight>
             </SafeAreaView>
@@ -99,7 +99,7 @@ export class HomeScreenDetail extends Component {
                 onLongPress={this._onLongPressButton}
                 underlayColor="white">
                 <View style={styles.button2}>
-                  <Text style={styles.buttonText}>เข้าสู่ระบบ</Text>
+                  <Text style={styles.buttonText}>ซื้อทันที</Text>
                 </View>
               </TouchableHighlight>
             </SafeAreaView>
