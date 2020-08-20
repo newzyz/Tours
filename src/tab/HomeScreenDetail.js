@@ -14,6 +14,7 @@ import {
 //chart
 import {
   BarChart,
+  LineChart
 } from "react-native-chart-kit";
 import { Dimensions } from "react-native";
 const screenWidth = Dimensions.get("window").width;
@@ -114,22 +115,44 @@ export class HomeScreenDetail extends Component {
             </SafeAreaView>
           </SafeAreaView>
         </View>
-        <SafeAreaView style={{marginTop:25,marginBottom:50}}>
-          <Text style={{alignSelf:'center'}}>Ratings</Text>
-          <BarChart
-            data={dataForBarChart}
-            width={screenWidth}
-            height={200}
-            yAxisLabel=""
-            chartConfig={chartConfig}
-            verticalLabelRotation={30}
-          />
+        <SafeAreaView style={{marginTop:25,marginBottom:50, flexDirection:'column'}}>
+          <SafeAreaView style={{flex:1}}>
+            <Text style={{alignSelf:'center'}}>Ratings</Text>
+            <BarChart
+              data={dataForBarChart}
+              width={screenWidth}
+              height={200}
+              yAxisLabel=""
+              chartConfig={chartConfig}
+              verticalLabelRotation={30}
+            />
+          </SafeAreaView>
+          <SafeAreaView style={{flex:1}}>
+              <LineChart
+                data={dataForLineChart}
+                width={screenWidth}
+                height={200}
+                chartConfig={chartConfig}
+              />
+          </SafeAreaView>
         </SafeAreaView>
         </ScrollView>      
       </SafeAreaView>
     );
   }
 }
+const dataForLineChart = {
+  labels: ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"],
+  datasets: [
+    {
+      data: [20, 45, 28, 80, 99],
+      color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`, // optional
+      strokeWidth: 2 // optional
+    }
+  ],
+  legend: ["ยอดสั่งซื้อรายสัปดาห์"] // optional
+};
+
 const dataForBarChart = {
   labels: ["1", "2", "3", "4", "5"],
   datasets: [
