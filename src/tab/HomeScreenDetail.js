@@ -9,7 +9,15 @@ import {
   StyleSheet,
   Button,
   TouchableHighlight,
+  Platform
 } from 'react-native';
+//chart
+import {
+  BarChart,
+} from "react-native-chart-kit";
+import { Dimensions } from "react-native";
+const screenWidth = Dimensions.get("window").width;
+
 import {CustomHeader} from '../index';
 import Blink from '../components/Blink';
 import {IMAGE} from '../constant/Image';
@@ -21,7 +29,8 @@ export class HomeScreenDetail extends Component {
           title="Product detail"
           navigation={this.props.navigation}
         />
-        <View style={{width: 520, height: 50}}>
+        <ScrollView style={{flex:1}}>
+        <View style={{width: 520, height: 50,}}>
           <Image
             style={{
               width: 350,
@@ -40,7 +49,7 @@ export class HomeScreenDetail extends Component {
           }}>
           <SafeAreaView style={{flexDirection: 'row'}}>
             <SafeAreaView>
-              <Text style={{color: '#EE2C2C', fontSize: 35}}>฿3,510 </Text>
+              <Text style={{color: '#EE2C2C', fontSize: 35,marginTop:Platform.OS === "ios"?0:250}}>฿3,510 </Text>
             </SafeAreaView>
             <SafeAreaView style={{justifyContent: 'flex-end'}}>
               <Text
@@ -105,10 +114,40 @@ export class HomeScreenDetail extends Component {
             </SafeAreaView>
           </SafeAreaView>
         </View>
+        <SafeAreaView style={{marginTop:25,marginBottom:50}}>
+          <Text style={{alignSelf:'center'}}>Ratings</Text>
+          <BarChart
+            data={dataForBarChart}
+            width={screenWidth}
+            height={200}
+            yAxisLabel=""
+            chartConfig={chartConfig}
+            verticalLabelRotation={30}
+          />
+        </SafeAreaView>
+        </ScrollView>      
       </SafeAreaView>
     );
   }
 }
+const dataForBarChart = {
+  labels: ["1", "2", "3", "4", "5"],
+  datasets: [
+    {
+      data: [1, 0, 3, 6, 12]
+    }
+  ]
+};
+const chartConfig = {
+  backgroundColor: '#1cc910',
+  backgroundGradientFrom: '#eff3ff',
+  backgroundGradientTo: '#efefef',
+  decimalPlaces: 2,
+  color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+  style: {
+    borderRadius: 16,
+  },
+};
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',

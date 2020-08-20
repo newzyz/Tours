@@ -55,11 +55,11 @@ export class HomeScreen extends React.Component {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate('HomeDetail')}>
-          <Text style={styles.itemText}>{item.title}</Text>
+          <Text style={styles.itemText}>ชื่อสินค้า: {item.title}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate('HomeDetail')}>
-          <Text style={styles.itemText}>{item.id}</Text>
+          <Text style={styles.itemText}>ราคา: {item.id}</Text>
         </TouchableOpacity>
       </View>
     );
