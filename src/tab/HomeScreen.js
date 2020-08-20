@@ -10,12 +10,14 @@ import {
   FlatList,
   ActivityIndicator,
   StatusBar,
+  Switch
 } from 'react-native';
 import axios from 'axios';
 import {CustomHeader} from '../index';
 import {SliderBox} from 'react-native-image-slider-box';
 import {IMAGE} from '../constant/Image';
 export class HomeScreen extends React.Component {
+  _isMounted = false;
   constructor(props) {
     super(props);
     this.state = {
@@ -28,11 +30,21 @@ export class HomeScreen extends React.Component {
       ],
       data: [],
       page: 1,
+      switchValue:false
     };
   }
   componentDidMount() {
     this.setState({isLoading: true}, this.getData);
   }
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+  toggleSwitch = (value) => {
+    //onValueChange of the switch this function will be called
+    this.setState({switchValue:value})
+    //state changes according to switch
+    //which will result in re-render the text
+ }
   getData = async () => {
     const url =
       'https://jsonplaceholder.typicode.com/photos?_limit=6&_page=' +
@@ -108,7 +120,7 @@ export class HomeScreen extends React.Component {
           data={this.state.data}
           renderItem={this.renderRow}
           onEndReached={this.handleLoadMore}
-          numColumns={numColumns}
+          numColumns={2}
           // onEndReachedThreshold={0}
           // ListFooterComponent = {this.renderFooter}
         />
@@ -116,7 +128,7 @@ export class HomeScreen extends React.Component {
     );
   }
 }
-const numColumns = 2;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

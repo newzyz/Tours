@@ -60,10 +60,10 @@ export class HomeScreenDetail extends Component {
                   textDecorationLine: 'line-through',
                 }}>
                 ฿3,900
-              </Text>
-            </SafeAreaView>
-            <SafeAreaView style={{justifyContent: 'center'}}>
+                <SafeAreaView style={{justifyContent: 'center'}}>
               <Text style={styles.button}>10%off</Text>
+                </SafeAreaView>
+              </Text>
             </SafeAreaView>
           </SafeAreaView>
           <SafeAreaView style={{flexDirection: 'row'}}>
@@ -220,6 +220,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'orange',
     color: 'white',
+    marginLeft:10
   },
   button2: {
     width: 150,
