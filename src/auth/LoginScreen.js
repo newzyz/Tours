@@ -47,11 +47,19 @@ export class LoginScreen extends Component {
     });
     SplashScreen.hide();
   }
-  
 
   state = {
     email: '',
     password: '',
+  };
+  getData = async () => {
+    const url =
+      'http://localhost:8888/api/login_api.php?Id=' + this.state.email;
+    return fetch(url)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({data: responseJson});
+      });
   };
   _onPressButton(email, pass) {
     if (email == 'Admin' && pass == '1234') {

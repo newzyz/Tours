@@ -10,7 +10,7 @@ import {
   FlatList,
   ActivityIndicator,
   StatusBar,
-  Switch
+  Switch,
 } from 'react-native';
 import axios from 'axios';
 import {CustomHeader} from '../index';
@@ -30,32 +30,24 @@ export class HomeScreen extends React.Component {
       ],
       data: [],
       page: 1,
-      switchValue:false
+      switchValue: false,
     };
   }
   componentDidMount() {
     this.setState({isLoading: true}, this.getData);
   }
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
   toggleSwitch = (value) => {
     //onValueChange of the switch this function will be called
-    this.setState({switchValue:value})
+    this.setState({switchValue: value});
     //state changes according to switch
     //which will result in re-render the text
- }
+  };
   getData = async () => {
-    const url =
-      'https://jsonplaceholder.typicode.com/photos?_limit=6&_page=' +
-      this.state.page;
-    fetch(url)
+    const url = 'http://localhost:8888/api/select_api.php';
+    return fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
-        this.setState({
-          data: this.state.data.concat(responseJson),
-          isLoading: false,
-        });
+        this.setState({data: responseJson});
       });
   };
   renderRow = ({item}) => {
@@ -63,15 +55,15 @@ export class HomeScreen extends React.Component {
       <View style={styles.product_card}>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate('HomeDetail')}>
-          <Image source={{uri: item.url}} style={styles.itemImage} />
+          <Image source={IMAGE[item.img]} style={styles.itemImage} />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate('HomeDetail')}>
-          <Text style={styles.itemText}>ชื่อสินค้า: {item.title}</Text>
+          <Text style={styles.itemText}>ชื่อสินค้า:{item.product_name}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate('HomeDetail')}>
-          <Text style={styles.itemText}>ราคา: {item.id}</Text>
+          <Text style={styles.itemText}>ราคา:{item.price}</Text>
         </TouchableOpacity>
       </View>
     );
@@ -115,15 +107,17 @@ export class HomeScreen extends React.Component {
             ผลิตภัณฑ์แนะนำ
           </Text>
         </View>
-        <FlatList
-          style={styles.container}
-          data={this.state.data}
-          renderItem={this.renderRow}
-          onEndReached={this.handleLoadMore}
-          numColumns={2}
-          // onEndReachedThreshold={0}
-          // ListFooterComponent = {this.renderFooter}
-        />
+        <ScrollView>
+          <FlatList
+            style={styles.container}
+            data={this.state.data}
+            keyExtractor={(item, index) => index.toString}
+            renderItem={this.renderRow}
+            numColumns={2}
+            // onEndReachedThreshold={0}
+            // ListFooterComponent = {this.renderFooter}
+          />
+        </ScrollView>
       </SafeAreaView>
     );
   }

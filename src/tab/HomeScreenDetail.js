@@ -9,15 +9,12 @@ import {
   StyleSheet,
   Button,
   TouchableHighlight,
-  Platform
+  Platform,
 } from 'react-native';
 //chart
-import {
-  BarChart,
-  LineChart
-} from "react-native-chart-kit";
-import { Dimensions } from "react-native";
-const screenWidth = Dimensions.get("window").width;
+import {BarChart, LineChart} from 'react-native-chart-kit';
+import {Dimensions} from 'react-native';
+const screenWidth = Dimensions.get('window').width;
 
 import {CustomHeader} from '../index';
 import Blink from '../components/Blink';
@@ -30,136 +27,144 @@ export class HomeScreenDetail extends Component {
           title="Product detail"
           navigation={this.props.navigation}
         />
-        <ScrollView style={{flex:1}}>
-        <View style={{width: 520, height: 50,}}>
-          <Image
+        <ScrollView style={{flex: 1}}>
+          <View style={{width: 520, height: 50}}>
+            <Image
+              style={{
+                width: 350,
+                height: 350,
+                marginLeft: 30,
+              }}
+              source={IMAGE.IMAGE_12}></Image>
+          </View>
+          <View
             style={{
-              width: 350,
-              height: 350,
-              marginLeft: 30,
-            }}
-            source={IMAGE.IMAGE_DETAIL}></Image>
-        </View>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'flex-start',
-            marginLeft: 20,
-            marginTop: 20,
-          }}>
-          <SafeAreaView style={{flexDirection: 'row'}}>
-            <SafeAreaView>
-              <Text style={{color: '#EE2C2C', fontSize: 35,marginTop:Platform.OS === "ios"?0:250}}>฿3,510 </Text>
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'flex-start',
+              marginLeft: 20,
+              marginTop: 20,
+            }}>
+            <SafeAreaView style={{flexDirection: 'row'}}>
+              <SafeAreaView>
+                <Text
+                  style={{
+                    color: '#EE2C2C',
+                    fontSize: 35,
+                    marginTop: Platform.OS === 'ios' ? 0 : 250,
+                  }}>
+                  ฿3,510{' '}
+                </Text>
+              </SafeAreaView>
+              <SafeAreaView style={{justifyContent: 'flex-end'}}>
+                <Text
+                  style={{
+                    color: 'gray',
+                    fontSize: 25,
+                    textDecorationLine: 'line-through',
+                  }}>
+                  ฿3,900
+                  <SafeAreaView style={{justifyContent: 'center'}}>
+                    <Text style={styles.button}>10%off</Text>
+                  </SafeAreaView>
+                </Text>
+              </SafeAreaView>
             </SafeAreaView>
-            <SafeAreaView style={{justifyContent: 'flex-end'}}>
-              <Text
+            <SafeAreaView style={{flexDirection: 'row'}}>
+              <SafeAreaView
                 style={{
-                  color: 'gray',
-                  fontSize: 25,
-                  textDecorationLine: 'line-through',
+                  flex: 1,
+                  justifyContent: 'center',
                 }}>
-                ฿3,900
-                <SafeAreaView style={{justifyContent: 'center'}}>
-              <Text style={styles.button}>10%off</Text>
-                </SafeAreaView>
-              </Text>
+                <Text>
+                  <Blink text="Hot!" />
+                </Text>
+              </SafeAreaView>
+              <SafeAreaView style={{flex: 9}}>
+                <Text style={styles.text}>
+                  ครีมบำรุงผิว Vital Perfection Uplifting and Firming Cream
+                  Enriched ปริมาณ 50 มล.
+                </Text>
+              </SafeAreaView>
             </SafeAreaView>
-          </SafeAreaView>
-          <SafeAreaView style={{flexDirection: 'row'}}>
             <SafeAreaView
               style={{
-                flex: 1,
-                justifyContent: 'center',
+                flexDirection: 'row',
+                alignSelf: 'center',
+                justifyContent: 'space-between',
               }}>
-              <Text>
-                <Blink text="Hot!" />
-              </Text>
+              <SafeAreaView>
+                <TouchableHighlight
+                  onPress={() =>
+                    this._onPressButton(this.state.email, this.state.password)
+                  }
+                  onLongPress={this._onLongPressButton}
+                  underlayColor="white">
+                  <View style={styles.button2}>
+                    <Text style={styles.buttonText}>เพิ่มใส่ตะกล้า</Text>
+                  </View>
+                </TouchableHighlight>
+              </SafeAreaView>
+              <SafeAreaView>
+                <TouchableHighlight
+                  onPress={() =>
+                    this._onPressButton(this.state.email, this.state.password)
+                  }
+                  onLongPress={this._onLongPressButton}
+                  underlayColor="white">
+                  <View style={styles.button2}>
+                    <Text style={styles.buttonText}>ซื้อทันที</Text>
+                  </View>
+                </TouchableHighlight>
+              </SafeAreaView>
             </SafeAreaView>
-            <SafeAreaView style={{flex: 9}}>
-              <Text style={styles.text}>
-                ครีมบำรุงผิว Vital Perfection Uplifting and Firming Cream
-                Enriched ปริมาณ 50 มล.
-              </Text>
-            </SafeAreaView>
-          </SafeAreaView>
+          </View>
           <SafeAreaView
-            style={{
-              flexDirection: 'row',
-              alignSelf: 'center',
-              justifyContent: 'space-between',
-            }}>
-            <SafeAreaView>
-              <TouchableHighlight
-                onPress={() =>
-                  this._onPressButton(this.state.email, this.state.password)
-                }
-                onLongPress={this._onLongPressButton}
-                underlayColor="white">
-                <View style={styles.button2}>
-                  <Text style={styles.buttonText}>เพิ่มใส่ตะกล้า</Text>
-                </View>
-              </TouchableHighlight>
+            style={{marginTop: 25, marginBottom: 50, flexDirection: 'column'}}>
+            <SafeAreaView style={{flex: 1}}>
+              <Text style={{alignSelf: 'center'}}>Ratings</Text>
+              <BarChart
+                data={dataForBarChart}
+                width={screenWidth}
+                height={200}
+                yAxisLabel=""
+                chartConfig={chartConfig}
+                verticalLabelRotation={30}
+              />
             </SafeAreaView>
-            <SafeAreaView>
-              <TouchableHighlight
-                onPress={() =>
-                  this._onPressButton(this.state.email, this.state.password)
-                }
-                onLongPress={this._onLongPressButton}
-                underlayColor="white">
-                <View style={styles.button2}>
-                  <Text style={styles.buttonText}>ซื้อทันที</Text>
-                </View>
-              </TouchableHighlight>
-            </SafeAreaView>
-          </SafeAreaView>
-        </View>
-        <SafeAreaView style={{marginTop:25,marginBottom:50, flexDirection:'column'}}>
-          <SafeAreaView style={{flex:1}}>
-            <Text style={{alignSelf:'center'}}>Ratings</Text>
-            <BarChart
-              data={dataForBarChart}
-              width={screenWidth}
-              height={200}
-              yAxisLabel=""
-              chartConfig={chartConfig}
-              verticalLabelRotation={30}
-            />
-          </SafeAreaView>
-          <SafeAreaView style={{flex:1}}>
+            <SafeAreaView style={{flex: 1}}>
               <LineChart
                 data={dataForLineChart}
                 width={screenWidth}
                 height={200}
                 chartConfig={chartConfig}
               />
+            </SafeAreaView>
           </SafeAreaView>
-        </SafeAreaView>
-        </ScrollView>      
+        </ScrollView>
       </SafeAreaView>
     );
   }
 }
 const dataForLineChart = {
-  labels: ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"],
+  labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'],
   datasets: [
     {
       data: [20, 45, 28, 80, 99],
       color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`, // optional
-      strokeWidth: 2 // optional
-    }
+      strokeWidth: 2, // optional
+    },
   ],
-  legend: ["ยอดสั่งซื้อรายสัปดาห์"] // optional
+  legend: ['ยอดสั่งซื้อรายสัปดาห์'], // optional
 };
 
 const dataForBarChart = {
-  labels: ["1", "2", "3", "4", "5"],
+  labels: ['1', '2', '3', '4', '5'],
   datasets: [
     {
-      data: [1, 0, 3, 6, 12]
-    }
-  ]
+      data: [1, 0, 3, 6, 12],
+    },
+  ],
 };
 const chartConfig = {
   backgroundColor: '#1cc910',
@@ -220,7 +225,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'orange',
     color: 'white',
-    marginLeft:10
+    marginLeft: 10,
   },
   button2: {
     width: 150,
