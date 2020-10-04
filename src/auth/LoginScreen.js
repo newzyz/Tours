@@ -36,6 +36,22 @@ import {IMAGE} from '../constant/Image';
 //   }
 // }
 export class LoginScreen extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      username: '',
+
+      password: '',
+
+      first: '',
+
+      last: '',
+
+      ActivityIndicator_Loading: true,
+    };
+  }
+
   componentDidMount() {
     // do stuff while splash screen is shown
     // After having done stuff (such as async tasks) hide the splash screen
@@ -47,11 +63,6 @@ export class LoginScreen extends Component {
     });
     SplashScreen.hide();
   }
-
-  state = {
-    email: '',
-    password: '',
-  };
   getData = async () => {
     const url =
       'http://localhost:8888/api/login_api.php?Id=' + this.state.email;
@@ -61,13 +72,29 @@ export class LoginScreen extends Component {
         this.setState({data: responseJson});
       });
   };
-  _onPressButton(email, pass) {
-    if (email == 'Admin' && pass == '1234') {
-      this.props.navigation.navigate('HomeApp');
-    } else {
-      alert('username หรือ password ไม่ถูกต้อง');
-    }
-  }
+  login = () => {
+    this.setState({ActivityIndicator_Loading: true}, () => {
+      fetch(
+        'http://localhost:8888/api/login_api.php?username=' +
+          this.state.username +
+          '&password=' +
+          this.state.password,
+      )
+        .then((response) => response.json())
+        .then((responseJson) => {
+          // If server response message same as Data Matched
+          if (responseJson === 'Data Matched') {
+            //Then open Profile activity and send user email to profile activity.
+            this.props.navigation.navigate('HomeApp');
+          } else {
+            Alert.alert(responseJson);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    });
+  };
 
   _onLongPressButton() {
     Alert.alert('You long-pressed the button!');
@@ -85,7 +112,7 @@ export class LoginScreen extends Component {
             placeholder="  Username"
             placeholderTextColor="gray"
             autoCapitalize="none"
-            onChangeText={(text) => this.setState({email: text})}
+            onChangeText={(text) => this.setState({username: text})}
             ref={(text) => {
               this.textInput = text;
             }}
@@ -103,9 +130,7 @@ export class LoginScreen extends Component {
             }}
           />
           <TouchableHighlight
-            onPress={() =>
-              this._onPressButton(this.state.email, this.state.password)
-            }
+            onPress={() => this.login()}
             onLongPress={this._onLongPressButton}
             underlayColor="white">
             <View style={styles.button}>
