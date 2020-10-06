@@ -54,15 +54,27 @@ export class HomeScreen extends React.Component {
     return (
       <View style={styles.product_card}>
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate('HomeDetail')}>
+          onPress={() =>
+            this.props.navigation.navigate('HomeDetail', {
+              name: item.product_name,
+            })
+          }>
           <Image source={IMAGE[item.img]} style={styles.itemImage} />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate('HomeDetail')}>
+          onPress={() =>
+            this.props.navigation.navigate('HomeDetail', {
+              name: item.product_name,
+            })
+          }>
           <Text style={styles.itemText}>ชื่อสินค้า:{item.product_name}</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate('HomeDetail')}>
+          onPress={() =>
+            this.props.navigation.navigate('HomeDetail', {
+              name: item.product_name,
+            })
+          }>
           <Text style={styles.itemText}>ราคา:{item.price}</Text>
         </TouchableOpacity>
       </View>
