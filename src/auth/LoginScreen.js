@@ -44,10 +44,6 @@ export class LoginScreen extends Component {
 
       password: '',
 
-      first: '',
-
-      last: '',
-
       ActivityIndicator_Loading: true,
     };
   }
@@ -64,8 +60,7 @@ export class LoginScreen extends Component {
     SplashScreen.hide();
   }
   getData = async () => {
-    const url =
-      'http://localhost:8888/api/login_api.php?Id=' + this.state.email;
+    const url = 'http://localhost/api/login_api.php?Id=' + this.state.email;
     return fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
@@ -75,7 +70,7 @@ export class LoginScreen extends Component {
   login = () => {
     this.setState({ActivityIndicator_Loading: true}, () => {
       fetch(
-        'http://localhost:8888/api/login_api.php?username=' +
+        'http://172.20.10.3/api/login_api.php?username=' +
           this.state.username +
           '&password=' +
           this.state.password,

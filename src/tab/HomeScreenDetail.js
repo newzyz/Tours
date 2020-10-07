@@ -21,6 +21,7 @@ import Blink from '../components/Blink';
 import {IMAGE} from '../constant/Image';
 export class HomeScreenDetail extends Component {
   render() {
+    const {itemId} = this.props.route.params;
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
         <CustomHeader
@@ -81,10 +82,7 @@ export class HomeScreenDetail extends Component {
                 </Text>
               </SafeAreaView>
               <SafeAreaView style={{flex: 9}}>
-                <Text style={styles.text}>
-                  ครีมบำรุงผิว Vital Perfection Uplifting and Firming Cream
-                  Enriched ปริมาณ 50 มล.
-                </Text>
+                <Text style={styles.text}>{itemId}</Text>
               </SafeAreaView>
             </SafeAreaView>
             <SafeAreaView

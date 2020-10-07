@@ -29,12 +29,16 @@ export class HomeScreen extends React.Component {
         IMAGE.IMAGE_SLIDE_4,
       ],
       data: [],
-      page: 1,
+      start: 0,
+      end: 6,
       switchValue: false,
     };
   }
   componentDidMount() {
     this.setState({isLoading: true}, this.getData);
+  }
+  componentWillUnmount() {
+    this._isMounted = false;
   }
   toggleSwitch = (value) => {
     //onValueChange of the switch this function will be called
@@ -43,38 +47,42 @@ export class HomeScreen extends React.Component {
     //which will result in re-render the text
   };
   getData = async () => {
-    const url = 'http://localhost:8888/api/select_api.php';
-    return fetch(url)
+    const url =
+      'http://172.20.10.3/api/select_api.php?start=' +
+      this.state.start +
+      '&end=' +
+      this.state.end;
+    fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
-        this.setState({data: responseJson});
+        this.setState({
+          data: this.state.data.concat(responseJson),
+          isLoading: false,
+        });
       });
   };
   renderRow = ({item}) => {
     return (
       <View style={styles.product_card}>
         <TouchableOpacity
-          onPress={() =>
+          onPress={() => {
+            /* 1. Navigate to the Details route with params */
             this.props.navigation.navigate('HomeDetail', {
-              name: item.product_name,
-            })
-          }>
+              itemId: item.product_id,
+            });
+          }}>
           <Image source={IMAGE[item.img]} style={styles.itemImage} />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() =>
             this.props.navigation.navigate('HomeDetail', {
-              name: item.product_name,
+              itemId: item.product_id,
             })
           }>
           <Text style={styles.itemText}>ชื่อสินค้า:{item.product_name}</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() =>
-            this.props.navigation.navigate('HomeDetail', {
-              name: item.product_name,
-            })
-          }>
+          onPress={() => this.props.navigation.navigate('HomeDetail')}>
           <Text style={styles.itemText}>ราคา:{item.price}</Text>
         </TouchableOpacity>
       </View>
@@ -90,7 +98,7 @@ export class HomeScreen extends React.Component {
   };
 
   handleLoadMore = () => {
-    this.setState({page: this.state.page + 1}, this.getData);
+    this.setState({start: this.state.start + 6}, this.getData);
   };
   render() {
     return (
@@ -108,7 +116,7 @@ export class HomeScreen extends React.Component {
           // currentImageEmitter={index => console.warn(`current pos is: ${index}`)}
           autoplay={true}
           circleLoop={true}
-          imageLoadingColor={'white'}
+          imageLoadingColor={'black'}
         />
         <View style={{justifyContent: 'center', alignItems: 'center'}}>
           <Text
@@ -119,17 +127,16 @@ export class HomeScreen extends React.Component {
             ผลิตภัณฑ์แนะนำ
           </Text>
         </View>
-        <ScrollView>
-          <FlatList
-            style={styles.container}
-            data={this.state.data}
-            keyExtractor={(item, index) => index.toString}
-            renderItem={this.renderRow}
-            numColumns={2}
-            // onEndReachedThreshold={0}
-            // ListFooterComponent = {this.renderFooter}
-          />
-        </ScrollView>
+        <FlatList
+          style={styles.container}
+          data={this.state.data}
+          keyExtractor={(item, index) => index.toString}
+          renderItem={this.renderRow}
+          onEndReached={this.handleLoadMore}
+          numColumns={2}
+          // onEndReachedThreshold={0}
+          // ListFooterComponent = {this.renderFooter}
+        />
       </SafeAreaView>
     );
   }

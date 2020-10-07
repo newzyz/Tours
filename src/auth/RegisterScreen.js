@@ -31,7 +31,7 @@ export class RegisterScreen extends Component {
 
   Insert_Data_Into_MySQL = () => {
     this.setState({ActivityIndicator_Loading: true}, () => {
-      fetch('http://localhost:8888/api/register_api.php', {
+      fetch('http://172.20.10.3/api/register_api.php', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -57,7 +57,7 @@ export class RegisterScreen extends Component {
           this.setState({ActivityIndicator_Loading: false});
         });
     });
-    this.props.navigation.navigate('HomeApp');
+    this.props.navigation.navigate('Login');
   };
   render() {
     return (
