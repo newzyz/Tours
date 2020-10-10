@@ -15,6 +15,12 @@ import {CustomHeader} from '../index';
 import {IMAGE} from '../constant/Image';
 
 export class NotificationsScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: '',
+    };
+  }
   render() {
     return (
       <SafeAreaView style={{flex: 1}}>
@@ -30,6 +36,14 @@ export class NotificationsScreen extends Component {
               placeholder="เช่น สิวเสี้ยน สิวอักเสบ ผด ..."
               onChangeText={(text) => this.setState({text})}
             />
+            <TouchableOpacity
+              onPress={() =>
+                this.props.navigation.navigate('GuideDetail', {
+                  text: this.state.text,
+                })
+              }>
+              <Text style={styles.text1}>ส่ง</Text>
+            </TouchableOpacity>
           </ImageBackground>
         </View>
       </SafeAreaView>
@@ -53,7 +67,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'left',
-    marginTop: Platform.OS === "ios"?-420:-300,
+    marginTop: Platform.OS === 'ios' ? -420 : -300,
     marginLeft: 60,
     marginRight: 70,
   },
