@@ -20,44 +20,78 @@ import {CustomHeader} from '../index';
 import Blink from '../components/Blink';
 import {IMAGE} from '../constant/Image';
 export class HomeScreenDetail extends Component {
-  render() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      images: [
+        IMAGE.IMAGE_SLIDE_1,
+        IMAGE.IMAGE_SLIDE_2,
+        IMAGE.IMAGE_SLIDE_3,
+        IMAGE.IMAGE_SLIDE_4,
+      ],
+      id: '',
+      data: [],
+    };
+  }
+
+  componentDidMount() {
     const {itemId} = this.props.route.params;
+    this.setState({id: itemId}, this.getData);
+  }
+
+  getData = async () => {
+    const url = 'http://172.20.10.3/api/selectOne_api.php?id=' + this.state.id;
+    fetch(url)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({
+          data: this.state.data.concat(responseJson),
+        });
+      });
+  };
+
+  render() {
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
         <CustomHeader
           title="Product detail"
           navigation={this.props.navigation}
         />
-        <ScrollView style={{flex: 1}}>
-          <View style={{width: 520, height: 50}}>
-            <Image
-              style={{
-                width: 350,
-                height: 350,
-                marginLeft: 30,
-              }}
-              source={IMAGE.IMAGE_12}></Image>
-          </View>
-          <View
+        <ScrollView style={{flex: 1, marginTop: 20}}>
+          <SafeAreaView
+            style={{width: '100%', height: 0, flex: 1, alignItems: 'center'}}>
+            {this.state.data.map((data) => (
+              <Image
+                style={{
+                  width: 300,
+                  height: 300,
+                  marginLeft: 0,
+                }}
+                source={IMAGE[data.img]}></Image>
+            ))}
+          </SafeAreaView>
+          <SafeAreaView
             style={{
               flex: 1,
               justifyContent: 'center',
-              alignItems: 'flex-start',
+              alignItems: 'center',
               marginLeft: 20,
               marginTop: 20,
             }}>
             <SafeAreaView style={{flexDirection: 'row'}}>
-              <SafeAreaView>
-                <Text
-                  style={{
-                    color: '#EE2C2C',
-                    fontSize: 35,
-                    marginTop: Platform.OS === 'ios' ? 0 : 250,
-                  }}>
-                  ฿3,510{' '}
-                </Text>
+              <SafeAreaView style={{alignItems: 'center'}}>
+                {this.state.data.map((data) => (
+                  <Text
+                    style={{
+                      color: '#EE2C2C',
+                      fontSize: 35,
+                      marginTop: Platform.OS === 'ios' ? 0 : 250,
+                    }}>
+                    {'\n'}฿{data.price}
+                  </Text>
+                ))}
               </SafeAreaView>
-              <SafeAreaView style={{justifyContent: 'flex-end'}}>
+              {/* <SafeAreaView style={{justifyContent: 'flex-end'}}>
                 <Text
                   style={{
                     color: 'gray',
@@ -69,10 +103,10 @@ export class HomeScreenDetail extends Component {
                     <Text style={styles.button}>10%off</Text>
                   </SafeAreaView>
                 </Text>
-              </SafeAreaView>
+              </SafeAreaView> */}
             </SafeAreaView>
             <SafeAreaView style={{flexDirection: 'row'}}>
-              <SafeAreaView
+              {/* <SafeAreaView
                 style={{
                   flex: 1,
                   justifyContent: 'center',
@@ -80,16 +114,31 @@ export class HomeScreenDetail extends Component {
                 <Text>
                   <Blink text="Hot!" />
                 </Text>
-              </SafeAreaView>
+              </SafeAreaView> */}
+              {/* <SafeAreaView style={{flex: 9}}>
+                {this.state.data.map((data) => (
+                  <Text style={styles.text}>{data.product_id}</Text>
+                ))}
+              </SafeAreaView> */}
+            </SafeAreaView>
+            <SafeAreaView style={{flexDirection: 'row'}}>
               <SafeAreaView style={{flex: 9}}>
-                <Text style={styles.text}>{itemId}</Text>
+                {this.state.data.map((data) => (
+                  <Text style={styles.text}>
+                    ชื่อสินค้า : {data.product_name}
+                    {'\n'}
+                    {'\n'}รายละเอียดสินค้า : {data.detail}
+                  </Text>
+                ))}
               </SafeAreaView>
             </SafeAreaView>
+
             <SafeAreaView
               style={{
                 flexDirection: 'row',
+                flex: 1,
                 alignSelf: 'center',
-                justifyContent: 'space-between',
+                width: '100%',
               }}>
               <SafeAreaView>
                 <TouchableHighlight
@@ -116,8 +165,8 @@ export class HomeScreenDetail extends Component {
                 </TouchableHighlight>
               </SafeAreaView>
             </SafeAreaView>
-          </View>
-          <SafeAreaView
+          </SafeAreaView>
+          {/* <SafeAreaView
             style={{marginTop: 25, marginBottom: 50, flexDirection: 'column'}}>
             <SafeAreaView style={{flex: 1}}>
               <Text style={{alignSelf: 'center'}}>Ratings</Text>
@@ -138,42 +187,42 @@ export class HomeScreenDetail extends Component {
                 chartConfig={chartConfig}
               />
             </SafeAreaView>
-          </SafeAreaView>
+          </SafeAreaView> */}
         </ScrollView>
       </SafeAreaView>
     );
   }
 }
-const dataForLineChart = {
-  labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'],
-  datasets: [
-    {
-      data: [20, 45, 28, 80, 99],
-      color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`, // optional
-      strokeWidth: 2, // optional
-    },
-  ],
-  legend: ['ยอดสั่งซื้อรายสัปดาห์'], // optional
-};
+// const dataForLineChart = {
+//   labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'],
+//   datasets: [
+//     {
+//       data: [20, 45, 28, 80, 99],
+//       color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`, // optional
+//       strokeWidth: 2, // optional
+//     },
+//   ],
+//   legend: ['ยอดสั่งซื้อรายสัปดาห์'], // optional
+// };
 
-const dataForBarChart = {
-  labels: ['1', '2', '3', '4', '5'],
-  datasets: [
-    {
-      data: [1, 0, 3, 6, 12],
-    },
-  ],
-};
-const chartConfig = {
-  backgroundColor: '#1cc910',
-  backgroundGradientFrom: '#eff3ff',
-  backgroundGradientTo: '#efefef',
-  decimalPlaces: 2,
-  color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-  style: {
-    borderRadius: 16,
-  },
-};
+// const dataForBarChart = {
+//   labels: ['1', '2', '3', '4', '5'],
+//   datasets: [
+//     {
+//       data: [1, 0, 3, 6, 12],
+//     },
+//   ],
+// };
+// const chartConfig = {
+//   backgroundColor: '#1cc910',
+//   backgroundGradientFrom: '#eff3ff',
+//   backgroundGradientTo: '#efefef',
+//   decimalPlaces: 2,
+//   color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+//   style: {
+//     borderRadius: 16,
+//   },
+// };
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',

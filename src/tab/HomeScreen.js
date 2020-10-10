@@ -28,6 +28,7 @@ export class HomeScreen extends React.Component {
         IMAGE.IMAGE_SLIDE_3,
         IMAGE.IMAGE_SLIDE_4,
       ],
+      itemInSlide: [1, 2, 3, 4],
       data: [],
       start: 0,
       end: 6,
@@ -111,7 +112,9 @@ export class HomeScreen extends React.Component {
         <SliderBox
           images={this.state.images}
           onCurrentImagePressed={(index) =>
-            this.props.navigation.navigate('HomeDetail')
+            this.props.navigation.navigate('HomeDetail', {
+              itemId: this.state.itemInSlide[index],
+            })
           }
           // currentImageEmitter={index => console.warn(`current pos is: ${index}`)}
           autoplay={true}
@@ -130,7 +133,7 @@ export class HomeScreen extends React.Component {
         <FlatList
           style={styles.container}
           data={this.state.data}
-          keyExtractor={(item, index) => index.toString}
+          keyExtractor={(item, index) => String(index)}
           renderItem={this.renderRow}
           onEndReached={this.handleLoadMore}
           numColumns={2}
