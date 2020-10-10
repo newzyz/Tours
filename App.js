@@ -18,6 +18,7 @@ import {
   HomeScreenDetail,
   SettingsScreen,
   SettingsScreenDetail,
+  GuideDetail,
 } from './src/tab';
 import {NotificationsScreen} from './src/drawer';
 import {RegisterScreen, LoginScreen} from './src/auth';
@@ -42,6 +43,11 @@ function HomeStack() {
       <StackHome.Screen
         name="HomeDetail"
         component={HomeScreenDetail}
+        options={navOptionHandler}
+      />
+      <StackHome.Screen
+        name="GuideDetail"
+        component={GuideDetail}
         options={navOptionHandler}
       />
     </StackHome.Navigator>
