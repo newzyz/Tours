@@ -9,8 +9,6 @@ import {
   StyleSheet,
   FlatList,
   ActivityIndicator,
-  StatusBar,
-  Switch,
 } from 'react-native';
 import axios from 'axios';
 import {CustomHeader} from '../index';
@@ -32,7 +30,6 @@ export class HomeScreen extends React.Component {
       data: [],
       start: 0,
       end: 6,
-      switchValue: false,
     };
   }
   componentDidMount() {
@@ -41,18 +38,9 @@ export class HomeScreen extends React.Component {
   componentWillUnmount() {
     this._isMounted = false;
   }
-  toggleSwitch = (value) => {
-    //onValueChange of the switch this function will be called
-    this.setState({switchValue: value});
-    //state changes according to switch
-    //which will result in re-render the text
-  };
   getData = async () => {
     const url =
-      'http://172.20.10.3/api/select_api.php?start=' +
-      this.state.start +
-      '&end=' +
-      this.state.end;
+      'http://172.20.10.3/apiforest/select_all_staff.php';
     fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
@@ -67,24 +55,22 @@ export class HomeScreen extends React.Component {
       <View style={styles.product_card}>
         <TouchableOpacity
           onPress={() => {
-            /* 1. Navigate to the Details route with params */
             this.props.navigation.navigate('HomeDetail', {
               itemId: item.product_id,
             });
           }}>
-          <Image source={IMAGE[item.img]} style={styles.itemImage} />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            this.props.navigation.navigate('HomeDetail', {
-              itemId: item.product_id,
-            })
-          }>
-          <Text style={styles.itemText}>ชื่อสินค้า:{item.product_name}</Text>
+          <Image source={IMAGE.IMAGE_SLIDE_1} style={styles.itemImage} />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate('HomeDetail')}>
-          <Text style={styles.itemText}>ราคา:{item.price}</Text>
+          <Text style={styles.itemText}>ID:{item.SID}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.itemText}>ชื่อ Staff:{item.SName}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate('HomeDetail')}>
+          <Text style={styles.itemText}>เบอร์โทร:{item.STelephone}</Text>
         </TouchableOpacity>
       </View>
     );
@@ -97,49 +83,125 @@ export class HomeScreen extends React.Component {
       </SafeAreaView>
     ) : null;
   };
-
-  handleLoadMore = () => {
-    this.setState({start: this.state.start + 6}, this.getData);
-  };
   render() {
     return (
       <SafeAreaView style={{flex: 1}}>
         <CustomHeader
-          title="Home"
+          title="Forest Tour"
           isHome={true}
           navigation={this.props.navigation}
         />
-        <SliderBox
-          images={this.state.images}
-          onCurrentImagePressed={(index) =>
-            this.props.navigation.navigate('HomeDetail', {
-              itemId: this.state.itemInSlide[index],
-            })
-          }
-          // currentImageEmitter={index => console.warn(`current pos is: ${index}`)}
-          autoplay={true}
-          circleLoop={true}
-          imageLoadingColor={'black'}
-        />
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Text
-            style={{
-              alignSelf: 'center',
-              marginTop: 10,
+        <SafeAreaView  style={{height:"50%"}}>
+          <TouchableOpacity style={{backgroundColor:'#e5df88'}}  onPress={() => {
+              this.props.navigation.navigate('Home');
             }}>
-            ผลิตภัณฑ์แนะนำ
-          </Text>
-        </View>
-        <FlatList
+            <SafeAreaView style={{justifyContent: 'center', alignItems: 'center',height:"20%"}}>
+              <Text
+                style={{
+                  alignSelf: 'center',
+                  marginTop: 50,
+                  fontSize:30
+                }}>
+                หน้าหลัก
+              </Text>
+            </SafeAreaView>
+          </TouchableOpacity>
+          <TouchableOpacity style={{backgroundColor:'#fbf7f0'}} onPress={() => {
+              this.props.navigation.navigate('Package');
+            }}>
+            <SafeAreaView style={{justifyContent: 'center', alignItems: 'center',height:"20%"}}>
+              <Text
+                style={{
+                  alignSelf: 'center',
+                  marginTop: 50,
+                  fontSize:30
+                  
+                }}>
+                เมนูเพ็คเกจ
+              </Text>
+            </SafeAreaView>
+          </TouchableOpacity>
+          <TouchableOpacity style={{backgroundColor:'#fafcc2'}} onPress={() => {
+              this.props.navigation.navigate('Customer');
+            }}>
+            <SafeAreaView style={{justifyContent: 'center', alignItems: 'center',height:"20%"}}>
+              <Text
+                style={{
+                  alignSelf: 'center',
+                  marginTop: 50,
+                  fontSize:30
+                }}>
+                เมนูลูกค้า
+              </Text>
+            </SafeAreaView>
+          </TouchableOpacity>
+          <TouchableOpacity style={{backgroundColor:'#edc988'}}
+          onPress={() => {
+            this.props.navigation.navigate('Staff');
+          }}>
+            <SafeAreaView style={{justifyContent: 'center', alignItems: 'center',height:"20%"}}>
+              <Text
+                style={{
+                  alignSelf: 'center',
+                  marginTop: 50,
+                  fontSize:30
+                }}>
+                เมนูสตาร์ฟ
+              </Text>
+            </SafeAreaView>
+          </TouchableOpacity>
+          <TouchableOpacity style={{backgroundColor:'#e8ffff'}}
+          onPress={() => {
+            this.props.navigation.navigate('Search');
+          }}>
+            <SafeAreaView style={{justifyContent: 'center', alignItems: 'center',height:"20%"}}>
+              <Text
+                style={{
+                  alignSelf: 'center',
+                  marginTop: 50,
+                  fontSize:30
+                }}>
+                เมนูค้นหาสตาร์ฟ
+              </Text>
+            </SafeAreaView>
+          </TouchableOpacity>
+          <TouchableOpacity style={{backgroundColor:'#fcdada'}} onPress={() => {
+            this.props.navigation.navigate('Reserve');
+          }}>
+            <SafeAreaView style={{justifyContent: 'center', alignItems: 'center',height:"20%"}}>
+              <Text
+                style={{
+                  alignSelf: 'center',
+                  marginTop: 50,
+                  fontSize:30
+                }}>
+                เมนูจองทัวร์
+              </Text>
+            </SafeAreaView>
+          </TouchableOpacity>
+          <TouchableOpacity style={{backgroundColor:'#9ab3f5'}}
+          onPress={() => {
+            this.props.navigation.navigate('Summary');
+          }}>
+            <SafeAreaView style={{justifyContent: 'center', alignItems: 'center',height:"20%"}}>
+              <Text
+                style={{
+                  alignSelf: 'center',
+                  marginTop: 50,
+                  fontSize:30
+                }}>
+                เมนูสรุปการจอง
+              </Text>
+            </SafeAreaView>
+          </TouchableOpacity>
+        </SafeAreaView>
+        {/* <FlatList
           style={styles.container}
           data={this.state.data}
           keyExtractor={(item, index) => String(index)}
           renderItem={this.renderRow}
-          onEndReached={this.handleLoadMore}
           numColumns={2}
-          // onEndReachedThreshold={0}
-          // ListFooterComponent = {this.renderFooter}
-        />
+        /> */}
       </SafeAreaView>
     );
   }

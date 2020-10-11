@@ -14,7 +14,7 @@ export class CustomHeader extends Component {
     let {navigation, title, isHome} = this.props;
     return (
       <View
-        style={{flexDirection: 'row', height: 50, backgroundColor: '#b2c4c8'}}>
+        style={{flexDirection: 'row', height: 50, backgroundColor: '#d2f5e3'}}>
         <View style={{flex: 1, justifyContent: 'center'}}>
           {isHome ? (
             <TouchableOpacity onPress={() => navigation.openDrawer()}>

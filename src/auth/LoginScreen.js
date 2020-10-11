@@ -14,27 +14,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {IMAGE} from '../constant/Image';
-// export class LoginScreen extends Component {
-//   render() {
-//     return (
-//       <SafeAreaView style={{flex: 1}}>
-//         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-//           <Text>Login Screen</Text>
-//           <TouchableOpacity
-//             style={{marginTop: 20}}
-//             onPress={() => this.props.navigation.navigate('HomeApp')}>
-//             <Text>Login</Text>
-//           </TouchableOpacity>
-//           <TouchableOpacity
-//             style={{marginTop: 20}}
-//             onPress={() => this.props.navigation.navigate('Register')}>
-//             <Text>Register</Text>
-//           </TouchableOpacity>
-//         </View>
-//       </SafeAreaView>
-//     );
-//   }
-// }
 export class LoginScreen extends Component {
   constructor() {
     super();
@@ -49,11 +28,7 @@ export class LoginScreen extends Component {
   }
 
   componentDidMount() {
-    // do stuff while splash screen is shown
-    // After having done stuff (such as async tasks) hide the splash screen
     const {navigation} = this.props;
-    //Adding an event listner om focus
-    //So whenever the screen will have focus it will set the state to zero
     this.focusListener = navigation.addListener('didFocus', () => {
       this.setState({count: 0});
     });
@@ -68,27 +43,7 @@ export class LoginScreen extends Component {
       });
   };
   login = () => {
-    this.setState({ActivityIndicator_Loading: true}, () => {
-      fetch(
-        'http://172.20.10.3/api/login_api.php?username=' +
-          this.state.username +
-          '&password=' +
-          this.state.password,
-      )
-        .then((response) => response.json())
-        .then((responseJson) => {
-          // If server response message same as Data Matched
-          if (responseJson === 'Data Matched') {
-            //Then open Profile activity and send user email to profile activity.
-            this.props.navigation.navigate('HomeApp');
-          } else {
-            Alert.alert(responseJson);
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    });
+    this.props.navigation.navigate('HomeApp');
   };
 
   _onLongPressButton() {
@@ -98,7 +53,7 @@ export class LoginScreen extends Component {
   render() {
     return (
       <ImageBackground source={IMAGE.IMAGE_BACK} style={styles.image}>
-        <Image style={styles.container1} source={IMAGE.IMAGE_LOGIN}></Image>
+        <Image style={styles.container1} source={IMAGE.IMAGE_BACK}></Image>
         <View style={styles.container}>
           <Text style={styles.text}></Text>
           <TextInput
@@ -170,7 +125,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 25,
     alignItems: 'center',
-    backgroundColor: '#b2c4c8',
+    backgroundColor: '#d2f5e3',
   },
   input: {
     marginTop: -5,

@@ -48,5 +48,19 @@ const IMAGE = {
   '22': require('../images/image/22.jpg'),
   '23': require('../images/image/23.jpg'),
   '24': require('../images/image/24.jpg'),
+
+  'GTour': require('../PackagePhoto/GTour.jpg'),
+  'BTour': require('../PackagePhoto/BTour.jpg'),
+  'Dinner': require('../PackagePhoto/Dinner.jpg'),
+  'Lunch': require('../PackagePhoto/Lunch.jpg'),
+  'food1.jpg': require('../PackagePhoto/food1.jpg'),
+  'food2.jpg': require('../PackagePhoto/food2.jpg'),
+  'food3.jpg': require('../PackagePhoto/food3.jpg'),
+
+  '7501.jpg': require('../StaffsPhoto/7501.jpg'),
+  '7502.jpg': require('../StaffsPhoto/7502.jpg'),
+  '7503.jpg': require('../StaffsPhoto/7503.jpg'),
+  '7504.jpg': require('../StaffsPhoto/7504.jpg'),
+
 };
 export {IMAGE};

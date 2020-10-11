@@ -16,11 +16,14 @@ import {CustomHeader, CustomDrawerContent} from './src';
 import {
   HomeScreen,
   HomeScreenDetail,
-  SettingsScreen,
+  CustomerScreen,
   SettingsScreenDetail,
-  GuideDetail,
+  PackageScreen,
+  SearchScreen,
+  SummaryScreen,
+  ReserveScreen
 } from './src/tab';
-import {NotificationsScreen} from './src/drawer';
+import {StaffScreen} from './src/drawer';
 import {RegisterScreen, LoginScreen} from './src/auth';
 import {IMAGE} from './src/constant/Image';
 SplashScreen.hide();
@@ -45,31 +48,27 @@ function HomeStack() {
         component={HomeScreenDetail}
         options={navOptionHandler}
       />
-      <StackHome.Screen
-        name="GuideDetail"
-        component={GuideDetail}
-        options={navOptionHandler}
-      />
+      
     </StackHome.Navigator>
   );
 }
 
-const StackSetting = createStackNavigator();
+const StackPackage = createStackNavigator();
 
-function SettingStack() {
+function PackageStack() {
   return (
-    <StackSetting.Navigator initialRouteName="Setting">
-      <StackSetting.Screen
-        name="Setting"
-        component={SettingsScreen}
+    <StackPackage.Navigator initialRouteName="Package">
+      <StackPackage.Screen
+        name="Package"
+        component={PackageScreen}
         options={navOptionHandler}
       />
-      <StackSetting.Screen
-        name="SettingDetail"
+      <StackPackage.Screen
+        name="PackageDetail"
         component={SettingsScreenDetail}
         options={navOptionHandler}
       />
-    </StackSetting.Navigator>
+    </StackPackage.Navigator>
   );
 }
 
@@ -82,7 +81,7 @@ function TabNavigator() {
 
           if (route.name === 'Home') {
             iconName = focused ? IMAGE.ICON_HOME_B : IMAGE.ICON_HOME_W;
-          } else if (route.name === 'Settings') {
+          } else if (route.name === 'Package') {
             iconName = focused ? IMAGE.ICON_SETTING_B : IMAGE.ICON_SETTING_W;
           }
 
@@ -102,7 +101,7 @@ function TabNavigator() {
         inactiveTintColor: 'black',
       }}>
       <Tab.Screen name="Home" component={HomeStack} />
-      <Tab.Screen name="Settings" component={SettingStack} />
+      <Tab.Screen name="Package" component={PackageStack} />
     </Tab.Navigator>
   );
 }
@@ -115,7 +114,11 @@ function DrawerNavigator({navigation}) {
       initialRouteName="MenuTab"
       drawerContent={() => <CustomDrawerContent navigation={navigation} />}>
       <Drawer.Screen name="MenuTab" component={TabNavigator} />
-      <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+      <Drawer.Screen name="Staff" component={StaffScreen} />
+      <Drawer.Screen name="Customer" component={CustomerScreen} />
+      <Drawer.Screen name="Search" component={SearchScreen} />
+      <Drawer.Screen name="Summary" component={SummaryScreen} />
+      <Drawer.Screen name="Reserve" component={ReserveScreen} />
     </Drawer.Navigator>
   );
 }
